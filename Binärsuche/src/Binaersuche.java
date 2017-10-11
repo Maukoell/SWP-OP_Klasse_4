@@ -2,13 +2,17 @@ import java.util.Scanner;
 
 public class Binaersuche {
 
-	public void listeFuellen(int[] liste) {
-
+	public static void listeFuellen(int[] liste) {
+		
 		for (int i = 0; i < liste.length; i++) {
 			liste[i] = i + 1;
 		}
 	}
 
+	public double minAnzahl(double a) {
+		return Math.ceil(Math.log(a) / Math.log(2));
+	}
+	
 	public void suche(int[] list, int min, int max, int suchZahl) {
 
 		int temp = (min + max) /2;
@@ -27,6 +31,7 @@ public class Binaersuche {
 		} 
 
 		System.out.println();
+		System.out.println("Die minimale Suchanzahl beträgt " + minAnzahl(list.length) );
 		System.out.println("Die gesuchte Zahl " + suchZahl + " wurde gefunden.");
 		System.out.println("Es wurden " + suche + " Durchläufe benötigt.");
 
@@ -41,7 +46,7 @@ public class Binaersuche {
 		int[] list = new int[groesse];
 		System.out.println("Gesuchte Zahl: ");
 		int suchZahl = s.nextInt();
-
+		
 		b.listeFuellen(list);
 		b.suche(list, 1, list.length, suchZahl);
 		s.close();
