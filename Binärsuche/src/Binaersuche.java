@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Binaersuche {
 
-	public static void listeFuellen(int[] liste) {
+	public void listeFuellen(int[] liste) {
 		
 		for (int i = 0; i < liste.length; i++) {
 			liste[i] = i + 1;
