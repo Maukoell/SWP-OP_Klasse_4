@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Binaersuche {
 
+	private int suchDurchlaeufe = 0;
+	
 	public void listeFuellen(int[] liste) {
 		
 		for (int i = 0; i < liste.length; i++) {
@@ -11,6 +13,23 @@ public class Binaersuche {
 
 	public double minAnzahl(double a) {
 		return Math.ceil(Math.log(a) / Math.log(2));
+	}
+	
+	public void sucheRekursiv(int[] list, int min, int max, int suchZahl) {
+		int temp = (min + max) / 2;
+		suchDurchlaeufe++;
+		if (list[temp - 1] == suchZahl) {
+			System.out.println("Die minimale Suchanzahl beträgt " + minAnzahl(list.length) );
+			System.out.println("Die gesuchte Zahl " + suchZahl + " wurde gefunden.");
+			System.out.println("Es wurden " + suchDurchlaeufe + " Durchläufe benötigt.");
+		}
+		if (list[temp - 1] < suchZahl) {
+			sucheRekursiv(list, temp + 1, max, suchZahl);
+		}
+		if (list[temp - 1] > suchZahl) {
+			sucheRekursiv(list, min, temp - 1, suchZahl);
+		}
+		
 	}
 	
 	public void suche(int[] list, int min, int max, int suchZahl) {
@@ -48,7 +67,8 @@ public class Binaersuche {
 		int suchZahl = s.nextInt();
 		
 		b.listeFuellen(list);
-		b.suche(list, 1, list.length, suchZahl);
+		b.sucheRekursiv(list, 1, list.length, suchZahl);
+//		b.suche(list, 1, list.length, suchZahl);
 		s.close();
 
 	}
