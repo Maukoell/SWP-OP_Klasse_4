@@ -11,15 +11,15 @@ public class Binaersuche {
 		}
 	}
 
-	public double minAnzahl(double a) {
-		return Math.ceil(Math.log(a) / Math.log(2));
+	public double maxAnzahl(double a) {
+		return Math.ceil(Math.log(a + 1) / Math.log(2));
 	}
 	
 	public void sucheRekursiv(int[] list, int min, int max, int suchZahl) {
 		int temp = (min + max) / 2;
 		suchDurchlaeufe++;
 		if (list[temp - 1] == suchZahl) {
-			System.out.println("Die minimale Suchanzahl beträgt " + minAnzahl(list.length) );
+			System.out.println("Die maximale Suchanzahl beträgt " + maxAnzahl(list.length) );
 			System.out.println("Die gesuchte Zahl " + suchZahl + " wurde gefunden.");
 			System.out.println("Es wurden " + suchDurchlaeufe + " Durchläufe benötigt.");
 		}
@@ -29,8 +29,12 @@ public class Binaersuche {
 		if (list[temp - 1] > suchZahl) {
 			sucheRekursiv(list, min, temp - 1, suchZahl);
 		}
+		if (list[temp - 1] < min) {
+			System.out.println("Die Zahl wurde nicht gefunden.");
+		}
 		
 	}
+	
 	
 	public void suche(int[] list, int min, int max, int suchZahl) {
 
@@ -50,7 +54,7 @@ public class Binaersuche {
 		} 
 
 		System.out.println();
-		System.out.println("Die minimale Suchanzahl beträgt " + minAnzahl(list.length) );
+		System.out.println("Die maximale Suchanzahl beträgt " + maxAnzahl(list.length));
 		System.out.println("Die gesuchte Zahl " + suchZahl + " wurde gefunden.");
 		System.out.println("Es wurden " + suche + " Durchläufe benötigt.");
 
