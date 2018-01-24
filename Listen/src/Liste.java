@@ -78,8 +78,6 @@ public class Liste {
 	        list.delete("3"); 
 	        list.writeList(); 
 	        System.out.println("erstes Element: " + list.getFirstElem().getObj()); 
-	        System.out.println("ist '3' enthalten? " + list.find("3")); 
-	        System.out.println("ist '5' enthalten? " + list.find("5")); 
 	        System.out.println("letztes Element: " + list.getLastElem().getObj()); 
 	    } 
 }
