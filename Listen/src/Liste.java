@@ -64,7 +64,7 @@ public class Liste {
 	public void writeList() {
 		ListElement le = startElem;
 		while (le != null) {
-			System.out.print(le.getObj() +" -- ");
+			System.out.print(le.getObj() + " -- ");
 			le = le.getNextElem();
 		}
 		System.out.println();
@@ -82,48 +82,20 @@ public class Liste {
 
 	public void bubbleSortInt() {
 
-		for (int i = 0; i < this.getLength() + 1; i++) {
-			ListElement le1 = startElem;
-			for (int j = 0; j < this.getLength() + 1; j++) {
-				boolean before = false;
-				try {
-					ListElement le = this.getElementBefore(le1);
-					before = true;
-				}catch (Exception e) {
-				}
-				if(le1.nextElem != null) {
-				ListElement le2 = le1.getNextElem();
-				int v1 = Integer.parseInt(le1.getObj().toString());
-				int v2 = Integer.parseInt(le2.getObj().toString());
-				if (v1 > v2 && before) {
-					swap(le1, le2);
-				}else if (v1 > v2 && !before) {
-					swap(le1, le2);
-				}else {
-					le1 = le1.nextElem;
-				}
-				}
+		for (int i = 0; i < this.getLength(); i++) {
+			ListElement le = startElem;
+			for (int j = 0; j < this.getLength(); j++) {
+				if (le.getNextElem() != null && (int) le.getObj() > (int) le.getNextElem().getObj()) {
+					int temp = (int) le.getObj();
+					le.setObj(le.getNextElem().getObj());
+					le.getNextElem().setObj(temp);
+				}else if(le.getNextElem() != null) {
+					le = le.getNextElem();
 				}
 			}
+
 		}
 
-	public void swapFirst(ListElement le1, ListElement le2) {
-		ListElement le = le1;	//10
-		ListElement leNext = le2; //7
-
-		le.setNextElem(leNext.getNextElem());
-		leNext.setNextElem(le);
-		startElem = le2;
-	}
-	
-	public void swap(ListElement le1, ListElement le2) {
-		ListElement le = le1;	//10
-		ListElement leNext = le2; //7
-		ListElement leLast = getElementBefore(le1); //1
-
-		leLast.setNextElem(leNext);
-		le.setNextElem(leNext.getNextElem());
-		leNext.setNextElem(le);
 	}
 
 	public int getLength() {
@@ -138,37 +110,36 @@ public class Liste {
 		return counter;
 
 	}
-	
+
 	public void insertNumbers() {
 		System.out.println("Wie groﬂ soll die Liste sein?");
 
 		int numbers = 0;
 		Scanner s = new Scanner(System.in);
 		numbers = s.nextInt();
-		
-		
-		for(int i = 0; i < numbers; i++)
-		{
+
+		for (int i = 0; i < numbers; i++) {
 			int zahl = (int) (Math.random() * 10) + 1;
 			this.addLast(zahl);
 		}
-		
+		s.close();
+
 	}
 
 	public static void main(String[] args) {
 		Liste list = new Liste();
-//		list.addLast(4);
-//		list.addLast(3);
-//		list.addLast(10);
-//		list.addLast(7);
-//		list.addLast(5);
+		// list.addLast(4);
+		// list.addLast(3);
+		// list.addLast(10);
+		// list.addLast(7);
+		// list.addLast(5);
 		list.insertNumbers();
 		System.out.println("Unsorted list:");
 		list.writeList();
 		System.out.println();
-//		System.out.println("erstes Element: " + list.getFirstElem().getObj());
-//		System.out.println("letztes Element: " + list.getLastElem().getObj());
-		list.bubbleSortInt();
+		// System.out.println("erstes Element: " + list.getFirstElem().getObj());
+		// System.out.println("letztes Element: " + list.getLastElem().getObj());
+		list.bubbleSortInt(); 
 		System.out.println("Sorted list:");
 		list.writeList();
 	}
